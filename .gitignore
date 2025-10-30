@@ -1,0 +1,6 @@
+.pixi
+.vscode
+CoppeliaSim
+data
+outputs
+__pycache__

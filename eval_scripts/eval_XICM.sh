@@ -53,13 +53,19 @@ unseen_tasks=(
 ### bash eval_scripts/eval_XICM.sh "0,25,50,75,99" 25 Qwen2.5.7B.instruct 1 0,1,2,3,4,5,6,7 "random"
 ### bash eval_scripts/eval_XICM.sh "0,25,50,75,99" 25 Qwen2.5.7B.instruct 1 0,1,2,3,4,5,6,7 "lang_vis.out"
 
-
+export MULTIPROCESSING_START_METHOD=spawn
 seeds=(${1//,/ })
 episodes=$2
 modelname=$3
 demo_num_per_icl=$4
 gpu_id=$5
 ranking_method=$6
+disable_nccl=$7
+
+if [ "$disable_nccl" != "true" ]; then
+    export NCCL_P2P_DISABLE=1
+    export NCCL_IB_DISABLE=1
+fi
 
 echo "evaluate on 23 unseen tasks: ${unseen_tasks[@]}, using ${ranking_method} ranking method"
 

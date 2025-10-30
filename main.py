@@ -2,6 +2,7 @@ import gc
 import logging
 import os
 os.environ["CUDA_DEVICE_ORDER"] = "PCI_BUS_ID"
+os.environ['VLLM_WORKER_MULTIPROC_METHOD'] = 'spawn'
 
 import hydra
 from omegaconf import DictConfig, OmegaConf

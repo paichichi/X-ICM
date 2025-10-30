@@ -14,57 +14,46 @@ The project introduces AGNOSTOS, a simulation manipulation benchmark designed to
 
 ## 🔧 Environment Setup
 
-### 🐳 Option 1: Using Docker (Recommended)
-Please refer to [INSTALL_docker.md](./INSTALL_docker.md) to initialize your environment.
+### 🐳 Option 1: Using Docker
+Please refer to [INSTALL_docker.md](./docs/INSTALL_docker.md) to initialize your environment.
 
-### ⚙️ Option 2: Manual Setup
-Please refer to [INSTALL_manual.md](./INSTALL_manual.md) (adapted from [RoboPrompt](https://github.com/davidyyd/roboprompt)) for manual installation instructions.
+### ⚙️ Option 2: Local Installation
+
+For simplified installation using modern package management, we recommend **Pixi**. 
+Install it via the [official guide](https://pixi.sh/latest/#installation), and you can set up dependencies with minimal commands:
+
+```bash
+git clone https://github.com/jiaming-zhou/X-ICM.git && cd X-ICM
+pixi shell  # Install dependencies and enter virtual environment
+pixi run setup_env  # Install additional system dependencies (like xvfb, CoppeliaSim and flash-attention etc.)
+```
+
+Inside the Pixi shell, you can run additional tasks. For more options, run `pixi run --list`.
 
 
 ## 📊 AGNOSTOS Benchmark Data
-The benchmark consists of two parts (all data are available at [huggingface](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS)):
-- 📚 18 seen tasks for training (140G in total, split into five files), links:
-
-    [[seen_tasks.part_aa]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_aa?download=true) | [[seen_tasks.part_ab]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ab?download=true) | [[seen_tasks.part_ac]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ac?download=true) | [[seen_tasks.part_ad]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ad?download=true) | [[seen_tasks.part_ae]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/unseen_tasks.tar?download=true)
-- 🔍 23 unseen tasks for cross-task testing (20.2GB, one single file), link:
-
-    [[unseen_tasks.tar]](https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/unseen_tasks.tar)
-
-After downloading, process the files: 
+The benchmark consists of two parts. To download the data, use the following Pixi tasks:
 
 ```bash
-### for seen task data, combine all five files
-cat seen_tasks.part_* > seen_tasks.tar
-### check the file, it should be "8217d78779acfd2873d0f55849c8efcc"
-md5sum seen_tasks.tar 
-
-tar -xvf seen_tasks.tar
-tar -xvf unseen_tasks.tar
+pixi run get_seen_tasks  # Downloads and extracts 18 seen tasks (140G)
+pixi run get_unseen_tasks  # Downloads and extracts 23 unseen tasks (20.2GB)
 ```
 
-Creating symbolic links to the sub-folder `data`:
-```bash
-cd X-ICM
-mkdir data
-ln -s /path/to/seen_tasks data/
-ln -s /path/to/unseen_tasks data/
-```
+Data will be placed in the `data/` directory. For manual download instructions, see [MANUAL_DATA_DOWNLOAD.md](./docs/MANUAL_DATA_DOWNLOAD.md).
 
 ## 🤖 X-ICM Method
 
 ### 1️⃣ Model Download
-Download our pre-trained dynamics diffusion model from [[dynamics_diffusion.tar]](https://huggingface.co/Jiaming2472/X-ICM/resolve/main/dynamics_diffusion.tar?download=true) for cross-task in-context sample selection. 
+To download the pre-trained dynamics diffusion model, run:
 
-After downloading, extract and create a symbolic link to the sub-folder `data`.
 ```bash
-tar -xvf dynamics_diffusion.tar
-
-cd X-ICM
-ln -s /path/to/dynamics_diffusion data/
+pixi run get_model
 ```
 
+The model will be extracted to `data/dynamics_diffusion/`. For manual download instructions, see [MANUAL_DATA_DOWNLOAD.md](./docs/MANUAL_DATA_DOWNLOAD.md).
+
 ### 2️⃣ Evaluation
-Run script [`eval_XICM.sh`](./eval_scripts/eval_XICM.sh) with the below parameters:
+Run the evaluation using Pixi task with the below parameters. (You can also run `bash eval_scripts/eval_XICM.sh` directly in the Pixi shell as an alternative to `pixi run eval_xicm`.)
 ```bash
 ### set seed numbers for different runs
 seeds: [example: "0,99"]
@@ -82,16 +71,14 @@ ranking_method: [example: "lang_vis.out"]
 
 For dynamics-guided in-context manipulation, run:
 ```bash
-cd X-ICM
-bash eval_scripts/eval_XICM.sh "0,99" 25 Qwen2.5.7B.instruct 18 0,1 "lang_vis.out"
+pixi run eval_xicm "0,99" 25 Qwen2.5.7B.instruct 18 0,1 "lang_vis.out"
 ```
 **Reminder**: During evaluation, you need to load the Stable-Diffusion model and Qwen-LLM models from huggingface.
 You can manually download them from huggingface and load them from the local paths in [`load_weight func`](./main.py#L132) and [`model_path`](./rlbench_inference_dynamics_diffusion.py#L136), accordingly.
 
 For random selection of cross-task samples, run:
 ```bash
-cd X-ICM
-bash eval_scripts/eval_XICM.sh "0,99" 25 Qwen2.5.7B.instruct 18 0,1 "random"
+pixi run eval_xicm "0,99" 25 Qwen2.5.7B.instruct 18 0,1 "random"
 ```
 
 After testing, you can use [`gather_score.py`](./gather_score.py) to collect and analyze the results.

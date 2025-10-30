@@ -1,53 +1,20 @@
-**⭐️⭐️⭐️ Guideline adapted from [RoboPrompt](https://github.com/davidyyd/roboprompt) ⭐️⭐️⭐️**
+# Installation with Pixi
 
-Important: If you meet problems during below installation, you can check the installation guideline provided by [RVT](https://github.com/NVlabs/RVT).
+## Prerequisites
+Install Pixi following the [official guide](https://pixi.sh/latest/#installation).
 
-
-# Installation
-
-## 1. Initial Setup:
-Create a conda environment with Python 3.10 and clone X-ICM repo:
+## Setup
 ```bash
-conda create -n XICM python=3.10
-conda activate XICM
-pip install pip==24.0 # fixed required for YARR
 git clone git@github.com:jiaming-zhou/X-ICM.git
 cd X-ICM
+pixi shell
 ```
 
-Please make sure you are using `pip==24.0` when installing the dependencies.
+Inside the Pixi shell, you can run tasks like:
+- `pixi run setup_env` to install dependencies and download data/models.
+- `pixi run eval_xicm "0,25,50,75,99" 25 Qwen2.5.7B.instruct 1 0,1,2,3,4,5,6,7 "lang_vis.out"` to evaluate the model.
 
-## 2. PyRep and Coppelia Simulator:
-
-Check instructions from the [PyRep](https://github.com/stepjam/PyRep). Paste below for convenience:
-
-PyRep requires version **4.1** of CoppeliaSim. Download: 
-- [Ubuntu 16.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu16_04.tar.xz)
-- [Ubuntu 18.04](https://downloads.coppeliarobotics.com/V4_1_0/CoppeliaSim_Player_V4_1_0_Ubuntu18_04.tar.xz)
-- [Ubuntu 20.04](https://www.coppeliarobotics.com/previousVersions#)
-
-Once you have downloaded CoppeliaSim, you can unzip the simulator and clone PyRep from git:
-
-```bash
-tar -xf <EDIT ME>/PATH/TO/COPPELIASIM.tar.xz
-```
-
-Add the following to your *~/.bashrc* file: (__NOTE__: the 'EDIT ME' in the first line)
-
-```bash
-export COPPELIASIM_ROOT=<EDIT ME>/PATH/TO/COPPELIASIM/INSTALL/DIR
-export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$COPPELIASIM_ROOT
-export QT_QPA_PLATFORM_PLUGIN_PATH=$COPPELIASIM_ROOT
-```
-
-Remember to source your bashrc (`source ~/.bashrc`) or 
-zshrc (`source ~/.zshrc`) after this.
-
-Install the PyRep package:
-
-```bash
-cd PyRep
-pip install -r requirements.txt
+For more tasks, run `pixi run --list`.
 pip install -e .
 ```
 
