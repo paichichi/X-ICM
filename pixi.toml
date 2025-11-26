@@ -1,5 +1,7 @@
 [workspace]
-channels = ["conda-forge", "https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/"]
+channels = ["conda-forge"]
+# For users in mainland China, uncomment the line below and comment out the line above to use Tsinghua mirror
+# channels = ["https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/"]
 name = "x-icm"
 platforms = ["linux-64"]
 version = "0.1.0"
@@ -77,27 +79,38 @@ rm CoppeliaSim_Edu_V4_1_0_Ubuntu20_04.tar.xz
 cmd = """
 bash -c '
 mkdir -p $PIXI_PROJECT_ROOT/data
-if [ -d "$PIXI_PROJECT_ROOT/data/seen_tasks" ]; then
-    echo "Directory $PIXI_PROJECT_ROOT/data/seen_tasks already exists. Overwrite? (y/N)"
-    read -r response
-    if [[ ! "$response" =~ ^[Yy]$ ]]; then
-        echo "Skipping seen_tasks download."
-        exit 0
-    fi
+if [ -d "$PIXI_PROJECT_ROOT/data/seen_tasks" ] && [ "$(ls -A $PIXI_PROJECT_ROOT/data/seen_tasks)" ]; then
+    echo "Directory $PIXI_PROJECT_ROOT/data/seen_tasks already exists with data. Skipping."
+    exit 0
 fi
+echo "Downloading seen_tasks parts..."
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/seen_tasks.part_aa https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_aa
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/seen_tasks.part_ab https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ab
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/seen_tasks.part_ac https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ac
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/seen_tasks.part_ad https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ad
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/seen_tasks.part_ae https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/seen_tasks.part_ae
+echo "Combining parts into tar file..."
 cat $PIXI_PROJECT_ROOT/data/seen_tasks.part_* > $PIXI_PROJECT_ROOT/data/seen_tasks.tar
-md5=$(md5sum $PIXI_PROJECT_ROOT/data/seen_tasks.tar | awk '{print $1}')
+echo "Verifying MD5 checksum..."
+md5=$(md5sum $PIXI_PROJECT_ROOT/data/seen_tasks.tar | cut -d" " -f1)
 if [ "$md5" != "8217d78779acfd2873d0f55849c8efcc" ]; then
     echo "MD5 mismatch for seen_tasks.tar: expected 8217d78779acfd2873d0f55849c8efcc, got $md5"
     exit 1
 fi
-tar -xvf $PIXI_PROJECT_ROOT/data/seen_tasks.tar -C $PIXI_PROJECT_ROOT/data/
+echo "Extracting tar file..."
+mkdir -p $PIXI_PROJECT_ROOT/data/seen_tasks_temp
+tar -xf $PIXI_PROJECT_ROOT/data/seen_tasks.tar -C $PIXI_PROJECT_ROOT/data/seen_tasks_temp
+echo "Flattening directory structure..."
+if [ -d "$PIXI_PROJECT_ROOT/data/seen_tasks_temp/seen_tasks/train" ]; then
+    mkdir -p $PIXI_PROJECT_ROOT/data/seen_tasks
+    mv $PIXI_PROJECT_ROOT/data/seen_tasks_temp/seen_tasks/train/* $PIXI_PROJECT_ROOT/data/seen_tasks/
+    rm -rf $PIXI_PROJECT_ROOT/data/seen_tasks_temp
+else
+    mv $PIXI_PROJECT_ROOT/data/seen_tasks_temp/seen_tasks/* $PIXI_PROJECT_ROOT/data/seen_tasks/ 2>/dev/null || mv $PIXI_PROJECT_ROOT/data/seen_tasks_temp/* $PIXI_PROJECT_ROOT/data/seen_tasks/ 2>/dev/null || true
+    rm -rf $PIXI_PROJECT_ROOT/data/seen_tasks_temp
+fi
 rm $PIXI_PROJECT_ROOT/data/seen_tasks.tar $PIXI_PROJECT_ROOT/data/seen_tasks.part_*
+echo "Done! seen_tasks extracted and flattened."
 '
 """
 
@@ -105,17 +118,26 @@ rm $PIXI_PROJECT_ROOT/data/seen_tasks.tar $PIXI_PROJECT_ROOT/data/seen_tasks.par
 cmd = """
 bash -c '
 mkdir -p $PIXI_PROJECT_ROOT/data
-if [ -d "$PIXI_PROJECT_ROOT/data/unseen_tasks" ]; then
-    echo "Directory $PIXI_PROJECT_ROOT/data/unseen_tasks already exists. Overwrite? (y/N)"
-    read -r response
-    if [[ ! "$response" =~ ^[Yy]$ ]]; then
-        echo "Skipping unseen_tasks download."
-        exit 0
-    fi
+if [ -d "$PIXI_PROJECT_ROOT/data/unseen_tasks" ] && [ "$(ls -A $PIXI_PROJECT_ROOT/data/unseen_tasks)" ]; then
+    echo "Directory $PIXI_PROJECT_ROOT/data/unseen_tasks already exists with data. Skipping."
+    exit 0
 fi
+echo "Downloading unseen_tasks..."
 curl -C - -L -o $PIXI_PROJECT_ROOT/data/unseen_tasks.tar https://huggingface.co/datasets/Jiaming2472/AGNOSTOS/resolve/main/unseen_tasks.tar
-tar -xvf $PIXI_PROJECT_ROOT/data/unseen_tasks.tar -C $PIXI_PROJECT_ROOT/data/
+echo "Extracting tar file..."
+mkdir -p $PIXI_PROJECT_ROOT/data/unseen_tasks_temp
+tar -xf $PIXI_PROJECT_ROOT/data/unseen_tasks.tar -C $PIXI_PROJECT_ROOT/data/unseen_tasks_temp
+echo "Flattening directory structure..."
+if [ -d "$PIXI_PROJECT_ROOT/data/unseen_tasks_temp/unseen_tasks/test" ]; then
+    mkdir -p $PIXI_PROJECT_ROOT/data/unseen_tasks
+    mv $PIXI_PROJECT_ROOT/data/unseen_tasks_temp/unseen_tasks/test/* $PIXI_PROJECT_ROOT/data/unseen_tasks/
+    rm -rf $PIXI_PROJECT_ROOT/data/unseen_tasks_temp
+else
+    mv $PIXI_PROJECT_ROOT/data/unseen_tasks_temp/unseen_tasks/* $PIXI_PROJECT_ROOT/data/unseen_tasks/ 2>/dev/null || mv $PIXI_PROJECT_ROOT/data/unseen_tasks_temp/* $PIXI_PROJECT_ROOT/data/unseen_tasks/ 2>/dev/null || true
+    rm -rf $PIXI_PROJECT_ROOT/data/unseen_tasks_temp
+fi
 rm $PIXI_PROJECT_ROOT/data/unseen_tasks.tar
+echo "Done! unseen_tasks extracted and flattened."
 '
 """
 
@@ -155,6 +177,8 @@ python = { version = "==3.11.12" }
 pip = "24.0.*"
 
 [pypi-options]
+# For users in mainland China, uncomment the line below to use Tsinghua mirror
+# index-url = "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/simple"
 
 [pypi-dependencies]
 torch = { version = "==2.6.0", index = "https://download.pytorch.org/whl/cu124" }
@@ -165,7 +189,7 @@ accelerate = "==1.7.0"
 numpy = "==1.26.4"
 pandas = "==1.4.1"
 scipy = "==1.15.3"
-transformers = "==4.52.3"
+transformers = "==4.51.3"
 tqdm = "==4.67.1"
 aiohappyeyeballs = "==2.6.1"
 aiohttp = "==3.11.18"
@@ -183,12 +207,68 @@ urllib3 = "==2.4.0"
 yarl = "==1.20.0"
 pyzmq = "==26.4.0"
 zmq = "==0.0.0"
+
+asttokens = "==3.0.0"
+bitsandbytes = "==0.45.5"
+click = "==8.1.8"
+comm = "==0.2.2"
+datasets = "==3.5.1"
+debugpy = "==1.8.14"
+decorator = "==5.2.1"
+decord = "==0.6.0"
+deepspeed = "==0.16.7"
+dill = "==0.3.8"
+docker-pycreds = "==0.4.0"
+einops = "==0.8.1"
+executing = "==2.2.0"
+gitdb = "==4.0.12"
+GitPython = "==3.1.44"
+hjson = "==3.1.0"
+ipykernel = "==6.29.5"
+ipython = "==9.2.0"
+ipython_pygments_lexers = "==1.1.1"
+ipywidgets = "==8.1.6"
+jedi = "==0.19.2"
+jupyter_client = "==8.6.3"
+jupyter_core = "==5.7.2"
+jupyterlab_widgets = "==3.0.14"
+liger_kernel = "==0.6.4"
+markdown-it-py = "==3.0.0"
+matplotlib-inline = "==0.1.7"
+mdurl = "==0.1.2"
+msgpack = "==1.1.0"
+multiprocess = "==0.70.16"
+nest_asyncio = "==1.6.0"
+parso = "==0.8.4"
+peft = "==0.15.2"
+pexpect = "==4.9.0"
+pickleshare = "==0.7.5"
+platformdirs = "==4.3.7"
+prompt_toolkit = "==3.0.51"
+ptyprocess = "==0.7.0"
+pure_eval = "==0.2.3"
+pyarrow = "==20.0.0"
+Pygments = "==2.19.1"
+rich = "==14.0.0"
+sentry-sdk = "==2.27.0"
+setproctitle = "==1.3.5"
+smmap = "==5.0.2"
+stack_data = "==0.6.3"
+tensorboardX = "==2.6.2.2"
+tornado = "==6.4.2"
+traitlets = "==5.14.3"
+trl = "==0.17.0"
+ujson = "==5.10.0"
+wandb = "==0.19.10"
+widgetsnbextension = "==4.0.14"
+xxhash = "==3.5.0"
+zipp = "==3.21.0"
 av = "==14.4.0"
 blake3 = "==1.0.5"
 diffusers = "==0.33.1"
 distro = "==1.9.0"
 filelock = "==3.18.0"
-fsspec = "==2025.5.0"
+fsspec = "==2024.6.1"
 ftfy = "==6.3.1"
 gguf = "==0.16.3"
 huggingface-hub = "==0.31.4"
