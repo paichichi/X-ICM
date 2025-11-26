@@ -114,7 +114,7 @@ Please follow your VLA model's fine-tuning guidelines to fine-tune your models o
 <details>
 <summary><b>Example: Fine-tuning Qwen2.5-VL (Click to expand)</b></summary>
 
-We provide a complete fine-tuning pipeline for **Qwen2.5-VL**:
+We provide a complete fine-tuning pipeline for **Qwen2.5-VL**, using the [Qwen2-VL-Finetune](https://github.com/2U1/Qwen2-VL-Finetune) framework:
 
 ```bash
 # Download seen tasks data (18 tasks, ~140GB)
@@ -214,7 +214,7 @@ X-ICM/
 </details>
 
 ## 🙏 Acknowledgments
-This repository is built upon the [RoboPrompt](https://github.com/davidyyd/roboprompt). Some resources from [RVT](https://github.com/NVlabs/RVT) and [RLBench](https://github.com/stepjam/RLBench) are used in this work.
+This repository is built upon the [RoboPrompt](https://github.com/davidyyd/roboprompt) and [Qwen2-VL-Finetune](https://github.com/2U1/Qwen2-VL-Finetune). Some resources from [RVT](https://github.com/NVlabs/RVT) and [RLBench](https://github.com/stepjam/RLBench) are used in this work.
 
 ## 📄 Citation
 If you find our work helpful to your research, please kindly give us a star and cite our paper.
