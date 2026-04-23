@@ -175,10 +175,6 @@ cmd = "bash eval_scripts/eval_XICM.sh {{seeds}} {{episodes}} {{modelname}} {{num
 [dependencies]
 python = { version = "==3.11.12" }
 pip = "24.0.*"
-av = "*"
-ffmpeg = "*"
-numpy = ">=1.26,<2.3"
-# numba = "*"
 
 [pypi-options]
 # For users in mainland China, uncomment the line below to use Tsinghua mirror
@@ -187,11 +183,11 @@ numpy = ">=1.26,<2.3"
 [pypi-dependencies]
 torch = { version = "==2.6.0", index = "https://download.pytorch.org/whl/cu124" }
 torchvision = { version = ">=0.21.0", index = "https://download.pytorch.org/whl/cu124" }
-# setuptools= "==80.9.0"
+setuptools= "==80.9.0"
 absl-py = "==2.2.2"
 accelerate = "==1.7.0"
-# numpy = "==1.26.4"
-pandas = "==1.5.3"
+numpy = "==1.26.4"
+pandas = "==1.4.1"
 scipy = "==1.15.3"
 transformers = "==4.51.3"
 tqdm = "==4.67.1"
@@ -267,8 +263,7 @@ wandb = "==0.19.10"
 widgetsnbextension = "==4.0.14"
 xxhash = "==3.5.0"
 zipp = "==3.21.0"
-# av = "==14.4.0"
-
+av = "==14.4.0"
 blake3 = "==1.0.5"
 diffusers = "==0.33.1"
 distro = "==1.9.0"
@@ -279,8 +274,7 @@ gguf = "==0.16.3"
 huggingface-hub = "==0.31.4"
 llguidance = "==0.7.24"
 llvmlite = "==0.44.0"
-# numba = "==0.61.2"
-numba = "==0.61.4"
+numba = "==0.61.2"
 opencv-python-headless = "==4.11.0.86"
 openai = "==1.82.0"
 qwen-vl-utils = "==0.0.11"
@@ -300,8 +294,8 @@ frozenlist = "==1.6.0"
 jiter = "==0.10.0"
 msgspec = "==0.19.0"
 multidict = "==6.4.4"
-# packaging = "==25.0"
-# pillow = "==11.2.1"
+packaging = "==25.0"
+pillow = "==11.2.1"
 pycparser = "==2.22"
 regex = "==2024.11.6"
 six = "==1.17.0"
@@ -347,9 +341,11 @@ python-dateutil = "==2.9.0.post0"
 pytz = "==2025.2"
 beautifulsoup4 = "==4.13.4"
 soupsieve = "==2.7"
-# clip = { git = "https://github.com/openai/CLIP.git" }
+clip = { git = "https://github.com/openai/CLIP.git" }
+[tool.uv.extra-build-dependencies]
+clip = ["setuptools", "wheel"]
 rlbench = { path = "./RLBench", editable = true }
-# yarr = { path = "./YARR", editable = true }
+yarr = { path = "./YARR", editable = true }
 
 
 
