@@ -37,11 +37,30 @@ class CrossTaskICLAgent(Agent):
         front_rgb_img=front_rgb_img.squeeze().permute(1, 2, 0).cpu().numpy()
         front_rgb_img = np.clip((front_rgb_img).astype(np.uint8), 0, 255)
 
-        front_rgb_img = Image.fromarray(front_rgb_img)
-        front_rgb_dir = os.path.join(self.savedir, 'rgb_dir', 'front', str(self.episode_id))
-        os.makedirs(front_rgb_dir, exist_ok=True)
-        front_rgb_img.save(os.path.join(front_rgb_dir, 'rgb.png'))
-        self.front_rgb_path=os.path.join(front_rgb_dir, 'rgb.png')
+        # front_rgb_img = Image.fromarray(front_rgb_img)
+        # front_rgb_dir = os.path.join(self.savedir, 'rgb_dir', 'front', str(self.episode_id))
+        # os.makedirs(front_rgb_dir, exist_ok=True)
+        # front_rgb_img.save(os.path.join(front_rgb_dir, 'rgb.png'))
+        # self.front_rgb_path=os.path.join(front_rgb_dir, 'rgb.png')
+        # Only save image when the LLM needs a visual input.
+        # Do not create logs/.../rgb_dir by default.
+        if len(self.actions) == 0:
+            front_rgb_img = Image.fromarray(front_rgb_img)
+        
+            rgb_cache_dir = os.environ.get(
+                'XICM_RGB_CACHE_DIR',
+                '/data/xzha593/tmp/xicm_rgb_cache'
+            )
+            os.makedirs(rgb_cache_dir, exist_ok=True)
+        
+            safe_task_name = re.sub(r'[^A-Za-z0-9_.-]+', '_', self.task_name)
+        
+            self.front_rgb_path = os.path.join(
+                rgb_cache_dir,
+                f'{safe_task_name}_seed{self.seed}_episode{self.episode_id}_pid{os.getpid()}.png'
+            )
+        
+            front_rgb_img.save(self.front_rgb_path)
 
         for camera in CAMERAS:
             rgb_img = obs[f'{camera}_rgb']
