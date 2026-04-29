@@ -1,0 +1,3 @@
+===== XVFB LOG =====
+/data/xzha593/software/xvfb-rhel8/usr/bin/Xvfb.patched: error while loading shared libraries: libXfont2.so.2: cannot open shared object file: No such file or directory
+Xvfb.patched failed to start.

@@ -1,0 +1,15 @@
+===== JOB INFO =====
+JOB_ID=8996
+NODELIST=foscsmlprd01
+CUDA_VISIBLE_DEVICES=0
+QT_QPA_PLATFORM=offscreen
+COPPELIASIM_REAL=/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04
+foscsmlprd01.its.auckland.ac.nz
+===== START lang_vis.out =====
+evaluate on 23 unseen tasks: put_toilet_roll_on_stand put_knife_on_chopping_board close_fridge close_microwave close_laptop_lid phone_on_base toilet_seat_down lamp_off lamp_on put_books_on_bookshelf put_umbrella_in_umbrella_stand open_grill put_rubbish_in_bin take_usb_out_of_computer take_lid_off_saucepan take_plate_off_colored_dish_rack basketball_in_hoop scoop_with_spatula straighten_rope turn_oven_on beat_the_buzz water_plants unplug_charger, using lang_vis.out ranking method
+eval using 0...
+scripts/eval_XICM.sh: line 91: xvfb-run: command not found
+eval using 50...
+scripts/eval_XICM.sh: line 91: xvfb-run: command not found
+eval using 99...
+scripts/eval_XICM.sh: line 91: xvfb-run: command not found

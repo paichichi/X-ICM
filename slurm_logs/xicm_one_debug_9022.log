@@ -1,0 +1,55 @@
+===== ENV CHECK =====
+DISPLAY=:122
+QT_QPA_PLATFORM=xcb
+QT_XCB_GL_INTEGRATION=xcb_glx
+QT_OPENGL=desktop
+COPPELIASIM_REAL=/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04
+XICM_RGB_CACHE_DIR=/data/xzha593/tmp/xicm_rgb_cache
+total 100K
+-rwxr-x---. 1 xzha593 xzha593 99K Jul 22  2020 libqxcb-glx-integration.so
+===== PREFLIGHT VisionSensor =====
+DISPLAY: :122
+QT_QPA_PLATFORM: xcb
+QT_XCB_GL_INTEGRATION: xcb_glx
+RGB captured: (128, 128, 3) float32 0.0 0.0
+[CoppeliaSim:loadinfo]   done.
+PREFLIGHT OK
+===== RUN RLBench CAMERA DEBUG: front + OPENGL3 =====
+===== ENV =====
+DISPLAY: :122
+QT_QPA_PLATFORM: xcb
+QT_XCB_GL_INTEGRATION: xcb_glx
+QT_OPENGL: desktop
+COPPELIASIM_ROOT: /data/xzha593/software/CoppeliaSim
+LD_LIBRARY_PATH: /data/xzha593/software/llvm-private/usr/lib64:/data/xzha593/envs/xicm/x86_64-conda-linux-gnu/sysroot/usr/lib64:/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04:/data/xzha593/envs/xicm/lib:/usr/lcoal/cuda-12.1/lib64:
+LIBGL_DRIVERS_PATH: /data/xzha593/envs/xicm/x86_64-conda-linux-gnu/sysroot/usr/lib64/dri
+===== DEBUG CAMERAS =====
+enabled_cameras: {'front'}
+===== BUILD OBS CONFIG =====
+DEBUG_RENDER_MODE: OPENGL3
+Resolved render_mode: RenderMode.OPENGL3
+===== LAUNCH RLBench ENV =====
+Environment launched
+===== LOAD TASK =====
+Task loaded: <rlbench.task_environment.TaskEnvironment object at 0x7eff3ab3fb50>
+===== LOAD DEMO =====
+Demo loaded: 1
+===== RESET TO DEMO =====
+QXcbIntegration: Cannot create platform offscreen surface, neither GLX nor EGL are enabled
+QXcbIntegration: Cannot create platform OpenGL context, neither GLX nor EGL are enabled
+QXcbIntegration: Cannot create platform OpenGL context, neither GLX nor EGL are enabled
+
+
+Error: signal 11:
+
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_Z11_segHandleri+0x2b)[0x7eff419758db]
+/lib64/libc.so.6(+0x4e630)[0x7eff4d0a4630]
+/lib64/libc.so.6(+0xab1fd)[0x7eff4d1011fd]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_Z15initGl_ifNeededv+0x116)[0x7eff41af8986]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN19COffscreenGlContextC1EiiiP9QGLWidgetii+0x15d)[0x7eff41b5b59d]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN20CVisionSensorGlStuffC1EiiibP9QGLWidgetbbii+0x74)[0x7eff41b5d104]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN13CVisionSensor45createGlContextAndFboAndTextureObjectIfNeededEb+0x1a7)[0x7eff4184cad7]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN13CVisionSensor13detectEntity2Eibbbb+0x1f6)[0x7eff418512a6]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN13CVisionSensor44detectVisionSensorEntity_executedViaUiThreadEibbbb+0x7f)[0x7eff4185159f]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN9CUiThread27__executeCommandViaUiThreadEP16SUIThreadCommandS1_+0xeb5)[0x7eff41ab61d5]
+QMutex: destroying locked mutex

@@ -1,5 +1,7 @@
 from typing import List, Callable
 
+import os
+
 import numpy as np
 from pyrep import PyRep
 from pyrep.const import ObjectType
@@ -133,7 +135,9 @@ class Scene(object):
                     self._place_task()
                     if self.robot.arm.check_arm_collision():
                         raise BoundaryError()
-                self.task.validate()
+                # self.task.validate()
+                if os.environ.get("RLBENCH_SKIP_WAYPOINT_VALIDATION", "0") != "1":
+                    self.task.validate()
                 break
             except (BoundaryError, WaypointError) as e:
                 self.task.cleanup_()

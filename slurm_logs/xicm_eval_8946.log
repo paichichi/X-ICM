@@ -1,0 +1,229 @@
+===== XVFB LOG =====
+===== JOB INFO =====
+JOB_ID=8946
+NODELIST=foscsmlprd01
+CUDA_VISIBLE_DEVICES=0
+foscsmlprd01.its.auckland.ac.nz
+===== START lang_vis.out =====
+evaluate on 23 unseen tasks: put_toilet_roll_on_stand put_knife_on_chopping_board close_fridge close_microwave close_laptop_lid phone_on_base toilet_seat_down lamp_off lamp_on put_books_on_bookshelf put_umbrella_in_umbrella_stand open_grill put_rubbish_in_bin take_usb_out_of_computer take_lid_off_saucepan take_plate_off_colored_dish_rack basketball_in_hoop scoop_with_spatula straighten_rope turn_oven_on beat_the_buzz water_plants unplug_charger, using lang_vis.out ranking method
+eval using 0...
+INFO 04-29 05:11:02 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 04-29 05:11:02 [__init__.py:239] Automatically detected platform cuda.
+/data/xzha593/projects/X-ICM/main.py:177: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_name='config', config_path='.')
+/data/xzha593/envs/xicm/lib/python3.11/site-packages/hydra/_internal/hydra.py:119: UserWarning: Future Hydra versions will no longer change working directory at job runtime by default.
+See https://hydra.cc/docs/1.2/upgrades/1.1_to_1.2/changes_to_job_working_dir/ for more information.
+  ret = run_job(
+[2026-04-29 05:11:04,893][root][INFO] - 
+method:
+  name: XICM_Cross.ZS_Ranking.lang_vis.out_Qwen2.5.7B.instruct_icl.18_test
+rlbench:
+  task_name: close_jar
+  cameras:
+  - front
+  - left_shoulder
+  - right_shoulder
+  - wrist
+  tasks:
+  - put_toilet_roll_on_stand
+  - put_knife_on_chopping_board
+  - close_fridge
+  - close_microwave
+  - close_laptop_lid
+  - phone_on_base
+  - toilet_seat_down
+  - lamp_off
+  - lamp_on
+  - put_books_on_bookshelf
+  - put_umbrella_in_umbrella_stand
+  - open_grill
+  - put_rubbish_in_bin
+  - take_usb_out_of_computer
+  - take_lid_off_saucepan
+  - take_plate_off_colored_dish_rack
+  - basketball_in_hoop
+  - scoop_with_spatula
+  - straighten_rope
+  - turn_oven_on
+  - beat_the_buzz
+  - water_plants
+  - unplug_charger
+  demo_path: data/unseen_tasks/test
+  episode_length: 25
+  time_in_state: true
+  headless: true
+framework:
+  gpu: 0
+  logdir: logs
+  start_seed: 0
+  record_every_n: 5
+  eval_envs: 1
+  eval_from_eps_number: 0
+  eval_episodes: 25
+  eval_save_metrics: true
+  demo_num_per_icl: 18
+  ranking_method: lang_vis.out
+  action_chunk_length: 30
+cinematic_recorder:
+  enabled: false
+  camera_resolution:
+  - 1280
+  - 720
+  fps: 30
+  rotate_speed: 0.005
+  save_path: logs/videos/
+
+[2026-04-29 05:11:04,893][root][INFO] - Using env device cuda.
+tasks: ['put_toilet_roll_on_stand', 'put_knife_on_chopping_board', 'close_fridge', 'close_microwave', 'close_laptop_lid', 'phone_on_base', 'toilet_seat_down', 'lamp_off', 'lamp_on', 'put_books_on_bookshelf', 'put_umbrella_in_umbrella_stand', 'open_grill', 'put_rubbish_in_bin', 'take_usb_out_of_computer', 'take_lid_off_saucepan', 'take_plate_off_colored_dish_rack', 'basketball_in_hoop', 'scoop_with_spatula', 'straighten_rope', 'turn_oven_on', 'beat_the_buzz', 'water_plants', 'unplug_charger']
+loading Qwen/Qwen2.5-7B-Instruct
+[2026-04-29 05:11:05,180][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:11:05,188][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:11:05,430][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-04-29 05:11:05,430][huggingface_hub.utils._http][WARNING] - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+[2026-04-29 05:11:05,438][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:11:05,688][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-04-29 05:11:05,930][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-29 05:11:06,176][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[transformers] `torch_dtype` is deprecated! Use `dtype` instead!
+[2026-04-29 05:11:13,988][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+INFO 04-29 05:11:13 [config.py:717] This model supports multiple tasks: {'score', 'generate', 'embed', 'reward', 'classify'}. Defaulting to 'generate'.
+INFO 04-29 05:11:13 [config.py:2003] Chunked prefill is enabled with max_num_batched_tokens=16384.
+[2026-04-29 05:11:15,188][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:11:15,195][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:11:15,439][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:11:15,447][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:11:15,693][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-04-29 05:11:15,943][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-04-29 05:11:16,755][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+[2026-04-29 05:11:17,112][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/generation_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:11:17,120][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/generation_config.json "HTTP/1.1 200 OK"
+INFO 04-29 05:11:21 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 04-29 05:11:21 [__init__.py:239] Automatically detected platform cuda.
+[2026-04-29 05:11:24] INFO vision_process.py:42: set VIDEO_TOTAL_PIXELS: 90316800
+/data/xzha593/projects/X-ICM/main.py:177: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_name='config', config_path='.')
+INFO 04-29 05:11:24 [core.py:58] Initializing a V1 LLM engine (v0.8.5.post1) with config: model='Qwen/Qwen2.5-7B-Instruct', speculative_config=None, tokenizer='Qwen/Qwen2.5-7B-Instruct', skip_tokenizer_init=False, tokenizer_mode=auto, revision=None, override_neuron_config=None, tokenizer_revision=None, trust_remote_code=False, dtype=torch.bfloat16, max_seq_len=16464, download_dir=None, load_format=LoadFormat.AUTO, tensor_parallel_size=1, pipeline_parallel_size=1, disable_custom_all_reduce=False, quantization=None, enforce_eager=False, kv_cache_dtype=auto,  device_config=cuda, decoding_config=DecodingConfig(guided_decoding_backend='auto', reasoning_backend=None), observability_config=ObservabilityConfig(show_hidden_metrics=False, otlp_traces_endpoint=None, collect_model_forward_time=False, collect_model_execute_time=False), seed=None, served_model_name=Qwen/Qwen2.5-7B-Instruct, num_scheduler_steps=1, multi_step_stream_outputs=True, enable_prefix_caching=True, chunked_prefill_enabled=True, use_async_output_proc=True, disable_mm_preprocessor_cache=False, mm_processor_kwargs=None, pooler_config=None, compilation_config={"level":3,"custom_ops":["none"],"splitting_ops":["vllm.unified_attention","vllm.unified_attention_with_output"],"use_inductor":true,"compile_sizes":[],"use_cudagraph":true,"cudagraph_num_of_warmups":1,"cudagraph_capture_sizes":[512,504,496,488,480,472,464,456,448,440,432,424,416,408,400,392,384,376,368,360,352,344,336,328,320,312,304,296,288,280,272,264,256,248,240,232,224,216,208,200,192,184,176,168,160,152,144,136,128,120,112,104,96,88,80,72,64,56,48,40,32,24,16,8,4,2,1],"max_capture_size":512}
+WARNING 04-29 05:11:24 [utils.py:2522] Methods determine_num_available_blocks,device_config,get_cache_block_size_bytes,initialize_cache not implemented in <vllm.v1.worker.gpu_worker.Worker object at 0x7fe6df17e7d0>
+INFO 04-29 05:11:25 [parallel_state.py:1004] rank 0 in world size 1 is assigned as DP rank 0, PP rank 0, TP rank 0
+INFO 04-29 05:11:25 [cuda.py:221] Using Flash Attention backend on V1 engine.
+WARNING 04-29 05:11:25 [topk_topp_sampler.py:69] FlashInfer is not available. Falling back to the PyTorch-native implementation of top-p & top-k sampling. For the best performance, please install FlashInfer.
+INFO 04-29 05:11:25 [gpu_model_runner.py:1329] Starting to load model Qwen/Qwen2.5-7B-Instruct...
+[2026-04-29 05:11:26] INFO _client.py:1025: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+[2026-04-29 05:11:26] INFO _client.py:1025: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=false&expand=false "HTTP/1.1 200 OK"
+INFO 04-29 05:11:26 [weight_utils.py:265] Using model weights format ['*.safetensors']
+[2026-04-29 05:11:26] INFO _client.py:1025: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/revision/main "HTTP/1.1 200 OK"
+[2026-04-29 05:11:26] INFO _client.py:1025: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/model.safetensors.index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:11:26] INFO _client.py:1025: HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/model.safetensors.index.json "HTTP/1.1 200 OK"
+Loading safetensors checkpoint shards:   0% Completed | 0/4 [00:00<?, ?it/s]
+Loading safetensors checkpoint shards:  25% Completed | 1/4 [00:00<00:01,  1.56it/s]
+Loading safetensors checkpoint shards:  50% Completed | 2/4 [00:01<00:01,  1.26it/s]
+Loading safetensors checkpoint shards:  75% Completed | 3/4 [00:02<00:00,  1.32it/s]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.34it/s]
+Loading safetensors checkpoint shards: 100% Completed | 4/4 [00:02<00:00,  1.34it/s]
+
+INFO 04-29 05:11:30 [loader.py:458] Loading weights took 3.15 seconds
+INFO 04-29 05:11:30 [gpu_model_runner.py:1347] Model loading took 14.2488 GiB and 4.404762 seconds
+INFO 04-29 05:11:36 [backends.py:420] Using cache directory: /data/xzha593/.cache/vllm/torch_compile_cache/57b05879b2/rank_0_0 for vLLM's torch.compile
+INFO 04-29 05:11:36 [backends.py:430] Dynamo bytecode transform time: 5.91 s
+INFO 04-29 05:11:41 [backends.py:118] Directly load the compiled graph(s) for shape None from the cache, took 4.432 s
+INFO 04-29 05:11:46 [monitor.py:33] torch.compile takes 5.91 s in total
+INFO 04-29 05:11:46 [kv_cache_utils.py:634] GPU KV cache size: 804,128 tokens
+INFO 04-29 05:11:46 [kv_cache_utils.py:637] Maximum concurrency for 16,464 tokens per request: 48.84x
+INFO 04-29 05:12:08 [gpu_model_runner.py:1686] Graph capturing finished in 21 secs, took 0.45 GiB
+INFO 04-29 05:12:08 [core.py:159] init engine (profile, create kv cache, warmup model) took 37.99 seconds
+INFO 04-29 05:12:08 [core_client.py:439] Core engine process 0 ready.
+[2026-04-29 05:12:08,633][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/processor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-29 05:12:08,884][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-29 05:12:09,129][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/video_preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-29 05:12:09,376][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/preprocessor_config.json "HTTP/1.1 404 Not Found"
+[2026-04-29 05:12:09,621][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:12:09,629][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:12:09,872][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:12:09,880][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:12:10,124][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:12:10,133][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:12:10,388][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Qwen/Qwen2.5-7B-Instruct/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:12:10,398][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Qwen/Qwen2.5-7B-Instruct/a09a35458c702b33eeacc393d103063234e8bc28/tokenizer_config.json "HTTP/1.1 200 OK"
+[2026-04-29 05:12:10,640][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+[2026-04-29 05:12:10,887][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+[2026-04-29 05:12:11,457][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen2.5-7B-Instruct "HTTP/1.1 200 OK"
+evaluating: task_id: 0, task_name: put_toilet_roll_on_stand
+[2026-04-29 05:12:11,472][root][INFO] - Evaluating seed 0.
+INFO 04-29 05:12:15 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 04-29 05:12:15 [__init__.py:239] Automatically detected platform cuda.
+[2026-04-29 05:12:18] INFO vision_process.py:42: set VIDEO_TOTAL_PIXELS: 90316800
+/data/xzha593/projects/X-ICM/main.py:177: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_name='config', config_path='.')
+INFO 04-29 05:12:22 [importing.py:53] Triton module has been replaced with a placeholder.
+INFO 04-29 05:12:23 [__init__.py:239] Automatically detected platform cuda.
+[2026-04-29 05:12:25] INFO vision_process.py:42: set VIDEO_TOTAL_PIXELS: 90316800
+/data/xzha593/projects/X-ICM/main.py:177: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_name='config', config_path='.')
+[2026-04-29 05:12:25,762][root][INFO] - eval_env: Launching env.
+[2026-04-29 05:12:25,762][root][INFO] - Agent information:
+[2026-04-29 05:12:25,762][root][INFO] - <crosstask_icl_agent.CrossTaskICLAgent object at 0x7f91106b6d90>
+/data/xzha593/projects/X-ICM/main.py:177: UserWarning: 
+The version_base parameter is not specified.
+Please specify a compatability version level, or None.
+Will assume defaults for version 1.1
+  @hydra.main(config_name='config', config_path='.')
+Loading checkpoint from /data/xzha593/projects/X-ICM/data/dynamics_diffusion/checkpoint-20000
+[2026-04-29 05:12:28,776][httpx][INFO] - HTTP Request: GET https://huggingface.co/api/models/Manojb/stable-diffusion-2-base "HTTP/1.1 200 OK"
+[2026-04-29 05:12:29,025][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/Manojb/stable-diffusion-2-base/resolve/main/model_index.json "HTTP/1.1 307 Temporary Redirect"
+[2026-04-29 05:12:29,033][httpx][INFO] - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/Manojb/stable-diffusion-2-base/64bf7b4f10eee35494b38d55c06c0c78cf8b44d0/model_index.json "HTTP/1.1 200 OK"
+Loading pipeline components...:   0%|          | 0/6 [00:00<?, ?it/s]Loading pipeline components...:  33%|███▎      | 2/6 [00:00<00:00, 16.50it/s]
+Loading weights:   0%|          | 0/372 [00:00<?, ?it/s][A
+Loading weights:  46%|████▌     | 170/372 [00:00<00:00, 1683.36it/s][A
+Loading weights:  91%|█████████ | 339/372 [00:00<00:00, 1418.61it/s][ALoading weights: 100%|██████████| 372/372 [00:00<00:00, 1483.92it/s]
+Loading pipeline components...:  67%|██████▋   | 4/6 [00:00<00:00,  6.06it/s]Loading pipeline components...: 100%|██████████| 6/6 [00:00<00:00,  9.08it/s]
+Task handler turn_tap using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/turn_tap
+Task handler close_jar using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/close_jar
+Task handler light_bulb_in using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/light_bulb_in
+Task handler slide_block_to_color_target using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/slide_block_to_color_target
+Task handler sweep_to_dustpan_of_size using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/sweep_to_dustpan_of_size
+Task handler push_buttons using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/push_buttons
+Task handler put_groceries_in_cupboard using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/put_groceries_in_cupboard
+Task handler put_money_in_safe using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/put_money_in_safe
+Task handler place_shape_in_shape_sorter using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/place_shape_in_shape_sorter
+Task handler put_item_in_drawer using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/put_item_in_drawer
+Task handler insert_onto_square_peg using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/insert_onto_square_peg
+Task handler open_drawer using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/open_drawer
+Task handler reach_and_drag using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/reach_and_drag
+Task handler place_wine_at_rack_location using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/place_wine_at_rack_location
+Task handler stack_cups using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/stack_cups
+Task handler place_cups using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/place_cups
+Task handler meat_off_grill using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/meat_off_grill
+Task handler stack_blocks using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/stack_blocks
+Task handler put_toilet_roll_on_stand using demonstrations from /data/xzha593/projects/X-ICM/data/unseen_tasks/test/put_toilet_roll_on_stand
+Evaluating weight /data/xzha593/projects/X-ICM/logs for put_toilet_roll_on_stand
+[2026-04-29 05:12:30,732][root][INFO] - Evaluating weight /data/xzha593/projects/X-ICM/logs for put_toilet_roll_on_stand
+
+
+Error: signal 11:
+
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_Z11_segHandleri+0x2b)[0x7f923cf4b8db]
+/lib64/libc.so.6(+0x4e630)[0x7f9248a7a630]
+/lib64/libc.so.6(+0xab334)[0x7f9248ad7334]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libQt5Core.so.5(_ZN10QByteArrayC2EPKci+0x90)[0x7f923aa1e4b0]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/xcbglintegrations/libqxcb-egl-integration.so(+0xaf21)[0x7f90cd26cf21]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libQt5Gui.so.5(_ZN14QOpenGLContext6createEv+0x51)[0x7f923b855aa1]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN19COffscreenGlContextC1EiiiP9QGLWidgetii+0x682)[0x7f923d131ac2]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN20CVisionSensorGlStuffC1EiiibP9QGLWidgetbbii+0x74)[0x7f923d133104]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN13CVisionSensor45createGlContextAndFboAndTextureObjectIfNeededEb+0x1a7)[0x7f923ce22ad7]
+/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04/libcoppeliaSim.so.1(_ZN13CVisionSensor13detectEntity2Eibbbb+0x1f6)[0x7f923ce272a6]
+QMutex: destroying locked mutex
+eval using 50...
+[2026-04-29T05:12:45.892] error: *** JOB 8946 ON foscsmlprd01 CANCELLED AT 2026-04-29T05:12:45 DUE to SIGNAL Terminated ***

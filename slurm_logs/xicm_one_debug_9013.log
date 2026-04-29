@@ -1,0 +1,18 @@
+===== ENV CHECK =====
+DISPLAY=:113
+QT_QPA_PLATFORM=xcb
+QT_XCB_GL_INTEGRATION=xcb_glx
+QT_OPENGL=desktop
+COPPELIASIM_REAL=/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04
+XICM_RGB_CACHE_DIR=/data/xzha593/tmp/xicm_rgb_cache
+total 100K
+-rwxr-x---. 1 xzha593 xzha593 99K Jul 22  2020 libqxcb-glx-integration.so
+===== PREFLIGHT VisionSensor =====
+DISPLAY: :113
+QT_QPA_PLATFORM: xcb
+QT_XCB_GL_INTEGRATION: xcb_glx
+RGB captured: (128, 128, 3) float32 0.0 0.0
+[CoppeliaSim:loadinfo]   done.
+PREFLIGHT OK
+===== RUN RLBench SCENE DEBUG ONLY =====
+python: can't open file '/data/xzha593/projects/X-ICM/debug_rlbench_scene.py': [Errno 2] No such file or directory

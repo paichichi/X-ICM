@@ -1,0 +1,42 @@
+===== ENV CHECK =====
+DISPLAY=:119
+QT_QPA_PLATFORM=xcb
+QT_XCB_GL_INTEGRATION=xcb_glx
+QT_OPENGL=desktop
+COPPELIASIM_REAL=/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04
+XICM_RGB_CACHE_DIR=/data/xzha593/tmp/xicm_rgb_cache
+total 100K
+-rwxr-x---. 1 xzha593 xzha593 99K Jul 22  2020 libqxcb-glx-integration.so
+===== PREFLIGHT VisionSensor =====
+DISPLAY: :119
+QT_QPA_PLATFORM: xcb
+QT_XCB_GL_INTEGRATION: xcb_glx
+RGB captured: (128, 128, 3) float32 0.0 0.0
+[CoppeliaSim:loadinfo]   done.
+PREFLIGHT OK
+===== RUN RLBench SCENE DEBUG ONLY =====
+===== ENV =====
+DISPLAY: :119
+QT_QPA_PLATFORM: xcb
+QT_XCB_GL_INTEGRATION: xcb_glx
+QT_OPENGL: desktop
+COPPELIASIM_ROOT: /data/xzha593/software/CoppeliaSim
+LD_LIBRARY_PATH: /data/xzha593/software/llvm-private/usr/lib64:/data/xzha593/envs/xicm/x86_64-conda-linux-gnu/sysroot/usr/lib64:/data/xzha593/software/CoppeliaSim_Edu_V4_1_0_Ubuntu18_04:/data/xzha593/envs/xicm/lib:/usr/lcoal/cuda-12.1/lib64:
+LIBGL_DRIVERS_PATH: /data/xzha593/envs/xicm/x86_64-conda-linux-gnu/sysroot/usr/lib64/dri
+===== BUILD OBS CONFIG: NO CAMERA =====
+===== LAUNCH RLBench ENV =====
+Environment launched
+===== LOAD TASK =====
+Task loaded: <rlbench.task_environment.TaskEnvironment object at 0x7f34637b6890>
+===== LOAD DEMO =====
+Demo loaded: 1
+===== RESET TO DEMO =====
+Reset OK
+Descriptions: ['put toilet roll on stand', 'place the toilet roll on the stand', 'slide the roll onto its holder']
+===== LOW-DIM CHECK =====
+joint_positions: (7,)
+gripper_pose: (7,)
+task_low_dim_state: (98,)
+[CoppeliaSim:loadinfo]   done.
+RLBench no-camera reset debug OK
+===== RLBench SCENE DEBUG DONE =====
